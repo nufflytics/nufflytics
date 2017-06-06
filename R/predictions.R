@@ -45,6 +45,34 @@ update_probs <- function(team) {
   team
 }
 
+#' Update TV
+#'
+#' Takes a team object and changes it's TV to something new. Takes the TV change from CCL data for the relevant race within +- 20 TV of the team's pre-game TV. To avoid single occurance outliers having a large impact on the results, sample five options and take the median
+#'
+#' @param team A team object from \code{\link{make_team}}
+#'
+#' @return Returns the passed team object with an updated TV
+#' @export
+update_tv <- function(team) {
+  ccl_distribution <- ccl_tv_change %>%
+    dplyr::filter(race == team$race, tv >= team$TV - 20, tv <= team$TV + 20) %>%
+    magrittr::extract2("tv_change")
+
+  if (length(ccl_distribution) > 0) {
+    tv_change <- sample(ccl_distribution, 5, replace = TRUE) %>% median
+  }
+  else { #don't have CCL information to go by. If high TV, on average bring it down. If low, bring it up
+    if(team$TV >= 1500)
+      tv_change <- rnorm(1, mean = -10, sd = 10) %>% round %>% magrittr::multiply_by(10)
+    else {
+      tv_change <- rnorn(1, mean = 10, sd = 10) %>% round %>% magrittr::multiply_by(10)
+    }
+  }
+  team$TV <- team$TV + tv_change
+
+  team
+}
+
 #' Calculate game probabilities
 #'
 #' Combine probabilites derived from the home and away team's record, as well as a TV based win probability from CCL data, to determine probability of outcomes for a specific game. Relative importance of the factors is adjusted with the \code{weights} parameter. Function adds a little bit of randomness to the final calculated properties to avoid a deterministic outcome.
@@ -57,6 +85,10 @@ update_probs <- function(team) {
 #' @export
 calc_game_probs <- function(home_team, away_team, weights) {
   game_tv_diff = home_team$TV - away_team$TV
+
+  if (game_tv_diff < -500) game_tv_diff <- -500
+  if (game_tv_diff > 500) game_tv_diff <- 500
+
   ccl_probs <- ccl_data %>%
     dplyr::filter(tv_diff >= game_tv_diff-20, tv_diff <= game_tv_diff+20) %>%
     dplyr::group_by(result) %>%
@@ -119,6 +151,9 @@ process_game <- function(team_list, weights) {
   home_team <- update_probs(home_team)
   away_team <- update_probs(away_team)
 
+  home_team <- update_tv(home_team)
+  away_team <- update_tv(away_team)
+
   r = list(home_team, away_team)
   names(r) <- c(home_team$team_name, away_team$team_name)
 
@@ -155,14 +190,16 @@ process_round <- function(rnd, teams, schedule, weights) {
 
 #' Simulate season
 #'
-#' Simulates an entice season from a list of teams and their schedule
+#' Simulates an entire season from a list of teams and their schedule
 #'
 #' @param teams List of teams in the league constructed with \code{\link{make_team}}
 #' @param schedule Data frame containing the league schedule. Must contain \code{round}, \code{home_team}, and\code{away_team}
-#' @param weights List containing a vector per round of three weights for combining probabilities from CCL data and a team's own record. Provided to the \code{\link{calc_game_probs}} function. If a list with a single vector is provides, it expands it up to the length of the season, \code{i.e.} it is a shortcut for providing constant weights for all rounds.
+#' @param weights List containing a vector per round of three weights for combining probabilities from CCL data and a team's own record. Provided to the \code{\link{calc_game_probs}} function. If a list with a single vector is provided, it expands it up to the length of the season, \code{i.e.} it is a shortcut for providing constant weights for all rounds.
 #' @param simulation_run Number of this simulation run. Used to print logging info to console so monitor simulation progress when performed in bulk
+#' @param num_sims Total number of simulations to run. Defaults to 10 for a quick run to check that everything is working. Recommend changing it to 1000 or more for real predictions
 #'
 #' @return Data frame containing the predicted results of the season.
+#' @describeIn Simulate Simulates a single run through of a season
 process_season <- function(teams, schedule, weights = list(c(60, 20, 20)), simulation_run = 0) {
   cat(paste0("\fprocessing run ",simulation_run,"...\n"))
   num_rounds = dplyr::n_distinct(schedule$round)
@@ -186,4 +223,15 @@ process_season <- function(teams, schedule, weights = list(c(60, 20, 20)), simul
     tidyr::gather(round, score, -team)
 
   results
+}
+
+#' @describeIn Simulate Runs multiple simulations and returns the cumulative points totals for the teams across the season
+simulate_league <- function(teams, schedule, weights = list(c(60, 20, 20)), num_sims = 10) {
+  d <- map_df(1:num_sims, ~process_season(teams, schedule, weights, simulation_run = .x), .id = "sample")
+  structure(d, class = c("sim_results", "data.frame"))
+}
+
+
+plot.sim_results <- function(sim_data, title = NULL, subtitle = NULL, xlab = NULL, ylab = NULL, ...) {
+
 }
