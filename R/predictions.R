@@ -65,7 +65,7 @@ update_tv <- function(team) {
     if(team$TV >= 1500)
       tv_change <- rnorm(1, mean = -10, sd = 10) %>% round %>% magrittr::multiply_by(10)
     else {
-      tv_change <- rnorn(1, mean = 10, sd = 10) %>% round %>% magrittr::multiply_by(10)
+      tv_change <- rnorm(1, mean = 10, sd = 10) %>% round %>% magrittr::multiply_by(10)
     }
   }
   team$TV <- team$TV + tv_change
