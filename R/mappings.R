@@ -131,6 +131,7 @@ id_to_casualty <- function(id) {
          "1"  = "BH",
          "4"  = "MNG",
          "5"  = "MNG",
+         "9"  = "MNG",
          "10" = "NI",
          "11" = "NI",
          "12" = "-MA",
