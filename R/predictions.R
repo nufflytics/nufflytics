@@ -192,7 +192,7 @@ process_round <- function(rnd, teams, schedule, weights) {
 #'
 #' Simulates an entire season from a list of teams and their schedule
 #'
-#' @param teams List of teams in the league constructed with \code{\link{make_team}}
+#' @param teams Data frame of with team_name, race, TV_displayed, TV_extra, wins, losses, draws.
 #' @param schedule Data frame containing the league schedule. Must contain \code{round}, \code{home_team}, and\code{away_team}
 #' @param weights List containing a vector per round of three weights for combining probabilities from CCL data and a team's own record. Provided to the \code{\link{calc_game_probs}} function. If a list with a single vector is provided, it expands it up to the length of the season, \code{i.e.} it is a shortcut for providing constant weights for all rounds.
 #' @param simulation_run Number of this simulation run. Used to print logging info to console so monitor simulation progress when performed in bulk
@@ -203,6 +203,12 @@ process_round <- function(rnd, teams, schedule, weights) {
 process_season <- function(teams, schedule, weights = list(c(60, 20, 20)), simulation_run = 0) {
   cat(paste0("\fprocessing run ",simulation_run,"...\n"))
   num_rounds = dplyr::n_distinct(schedule$round)
+
+  #Convert team spreadsheet into team object list
+  teams <- teams %>%
+    purrrlyr::by_row(make_team, .to = "team") %>%
+    magrittr::extract2("team") %>%
+    set_names(teams$team_name)
 
   #expand weights up to number or rounds if not specified
   #Allows per-round weights to be provided for fresher teams if desired

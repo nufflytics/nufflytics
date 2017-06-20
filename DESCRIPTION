@@ -1,11 +1,10 @@
 Package: nufflytics
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Blood Bowl Statistics and Analysis
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Author: Stephen Pearce
+Maintainer: Stephen Pearce <spearce@me.com>
+Description: Utility package for working with Blood Bowl data and .bbrz replay files
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
@@ -13,5 +12,9 @@ Imports: ggplot2,
     purrr,
     dplyr,
     magrittr,
-    tidyr
+    tidyr,
+    purrrlyr,
+    httr,
+    rvest,
+    stringr
 RoxygenNote: 6.0.1
