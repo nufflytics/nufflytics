@@ -104,6 +104,7 @@ id_to_playertype <- function(id) {
          "92" = "Pestigor",
          "93" = "Nurgle Warrior",
          "94" = "Beast of Nurgle",
+         "101" = "Star Player",
          "108" = "Hobgoblin",
          "109" = "Blocker",
          "110" = "Bull Centaur",
@@ -137,8 +138,8 @@ id_to_casualty <- function(id) {
          "7"  = "MNG",
          "8"  = "MNG",
          "9"  = "MNG",
-         "10" = "NI",
-         "11" = "NI",
+         "10" = "Niggle",
+         "11" = "Niggle",
          "12" = "-MA",
          "13" = "-MA",
          "14" = "-AV",
@@ -166,6 +167,7 @@ star_player_name <- function(name) {
          "PLAYER_NAMES_CHAMPION_MIGHTYZUG" = "Mighty Zug",
          "PLAYER_NAMES_CHAMPION_WILHELM" = "Wilhelm Chaney",
          "PLAYER_NAMES_CHAMPION_HUMAIN" = "Griff Oberwald",
-         "Unknown Star Player"
+         "PLAYER_NAMES_CHAMPION_ELDRILSIDEWINDER" = "Eldril Sidewinder",
+         name
          )
 }
