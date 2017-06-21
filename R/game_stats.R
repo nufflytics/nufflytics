@@ -85,7 +85,7 @@ player_data <- function(match_data, team) {
   data_frame(
     name     = playerResults %>% purrr::map("playerData") %>% purrr::map("name") %>% purrr::map_chr(star_player_name),
     type     = playerResults %>% purrr::map("playerData") %>% purrr::map_int("idPlayerTypes") %>% purrr::map_chr(id_to_playertype),
-    skills   = playerResults %>% purrr::map("playerData") %>% purrr::map("listSkills") %>% purrr::map2(list(match_data), ~parse_skills(.y,.x)) %>% purrr::map_chr(paste0,collapse=", "),
+    skills   = playerResults %>% purrr::map("playerData") %>% purrr::map("listSkills") %>% purrr::map2(list(match_data), ~parse_skills(.y,.x)) %>% purrr::map_chr(paste0,collapse=", ") %>% magrittr::inset(which(.==""), "Unskilled"),
     injuries = playerResults %>% purrr::map_int("casualty1") %>% purrr::map_chr(id_to_casualty),
     SPP      = playerResults %>% purrr::map("playerData") %>% purrr::map_int("experience"),
     SPP_gain = playerResults %>% purrr::map_int("xp"),
