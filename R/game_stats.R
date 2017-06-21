@@ -45,7 +45,11 @@ parse_skills <- function(match_data, player_skills) {
     as.character(player_skills),
     ~all_skills[[.]] %>%
       magrittr::extract2("Name") %>%
-      stringr::str_replace_all("([a-z])([A-Z])","\\1 \\2")
+      stringr::str_replace_all("([a-z])([A-Z])","\\1 \\2") %>%
+      stringr::str_replace("Increase Movement", "+MA") %>%
+      stringr::str_replace("Increase Armour", "+AV") %>%
+      stringr::str_replace("Increase Agility", "+AG") %>%
+      stringr::str_replace("Increase Strength", "+ST")
     )
 }
 
@@ -81,7 +85,7 @@ player_data <- function(match_data, team) {
   data_frame(
     name     = playerResults %>% purrr::map("playerData") %>% purrr::map_chr("name"),
     type     = playerResults %>% purrr::map("playerData") %>% purrr::map_int("idPlayerTypes") %>% purrr::map_chr(id_to_playertype),
-    skills   = playerResults %>% purrr::map("playerData") %>% purrr::map("listSkills") %>% purrr::map2(list(match_data), ~parse_skills(.y,.x)) %>% purrr::map_chr(paste0,collapse=", "),
+    skills   = playerResults %>% purrr::map("playerData") %>% purrr::map("listSkills") %>% purrr::map2(list(match_data), ~parse_skills(.y,.x)) %>% purrr::map_chr(paste0,collapse=", ") %>% magrittr::inset(which(.==""), NA),
     injuries = playerResults %>% purrr::map_int("casualty1") %>% purrr::map_chr(id_to_casualty),
     SPP      = playerResults %>% purrr::map("playerData") %>% purrr::map_int("experience"),
     SPP_gain = playerResults %>% purrr::map_int("xp"),
