@@ -53,6 +53,22 @@ parse_skills <- function(match_data, player_skills) {
     )
 }
 
+#' Parse injuries taken in a game
+#'
+#' @param player_result an element from the playerResults list from Cyanide's GetMatch API for a team
+#'
+#' @return The injuries sustained by the player during the game
+#' @export
+parse_injuries <- function(player_result) {
+   cas1 = player_result$casualty1 %>% id_to_casualty()
+   cas2 = player_result$casualty2 %>% id_to_casualty()
+
+   # combine cas1 and cas2 if cas2 exists and is different
+   if(!is.na(cas2) & cas1!=cas2) cas1 = sprintf("%s, %s", cas1, cas2)
+
+   cas1
+}
+
 #' Get team score
 #'
 #' @param match_data Match data object from \link{\code{get_game_stats}}
@@ -86,7 +102,7 @@ player_data <- function(match_data, team) {
     name     = playerResults %>% purrr::map("playerData") %>% purrr::map("name") %>% purrr::map_chr(star_player_name),
     type     = playerResults %>% purrr::map("playerData") %>% purrr::map_int("idPlayerTypes") %>% purrr::map_chr(id_to_playertype),
     skills   = playerResults %>% purrr::map("playerData") %>% purrr::map("listSkills") %>% purrr::map2(list(match_data), ~parse_skills(.y,.x)) %>% purrr::map_chr(paste0,collapse=", ") %>% magrittr::inset(which(.==""), "Unskilled"),
-    injuries = playerResults %>% purrr::map_int("casualty1") %>% purrr::map_chr(id_to_casualty),
+    injuries = playerResults %>% purrr::map_chr(parse_injuries),
     SPP      = playerResults %>% purrr::map("playerData") %>% purrr::map_int("experience"),
     SPP_gain = playerResults %>% purrr::map_int("xp"),
     lvlup    = purrr::map2_lgl(SPP,SPP_gain, did_level_up)
