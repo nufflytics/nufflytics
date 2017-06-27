@@ -6,11 +6,12 @@
 #' @export
 #'
 #' @examples
-get_game_stats <- function(uuid) {
-  #add a leading 1 to uuid if not present
-  if(grepl("^0", uuid)) uuid <- stringr::str_c(1,uuid)
+get_game_stats <- function(uuid, platform) {
+  #add leading 1<platform_code> to uuid if not present
+  platform_code <- c(pc=0,ps4=1,xb1=2)
+  if(grepl("^0", uuid)) uuid <- stringr::str_c(1,platform_code[platform],uuid)
 
-  httr::POST(paste0("http://app2-pc.bb2.cyanide-studio.com:21050/BB2/GetMatch/?matchUUID=1",uuid)) %>%
+  httr::POST(paste0("http://app2-pc.bb2.cyanide-studio.com:21050/BB2/GetMatch/?matchUUID=",uuid)) %>%
     httr::content() %>%
     structure(class = c("BBgame",class(.)))
 }
