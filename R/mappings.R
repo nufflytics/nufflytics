@@ -108,10 +108,12 @@ id_to_playertype <- function(id) {
          "108" = "Hobgoblin",
          "109" = "Blocker",
          "110" = "Bull Centaur",
+         "111" = "Minotaur",
          "135" = "Star Player",
          "139" = "Lineman",
          "140" = "Blitzer",
          "141" = "Blocker",
+         "251" = "Star Player",
          "254" = "Star Player",
          "277" = "Star Player",
          "Unknown playertype"
@@ -168,6 +170,9 @@ star_player_name <- function(name) {
          "PLAYER_NAMES_CHAMPION_WILHELM" = "Wilhelm Chaney",
          "PLAYER_NAMES_CHAMPION_HUMAIN" = "Griff Oberwald",
          "PLAYER_NAMES_CHAMPION_ELDRILSIDEWINDER" = "Eldril Sidewinder",
+         "PLAYER_NAMES_CHAMPION_RAMTUTIII" = "Ramtut III",
+         "PLAYER_NAMES_CHAMPION_LORDBORAKTHEDESPOILER" = "Lord Borak the Despoiler",
+         "PLAYER_NAMES_CHAMPION_LEWDGRIP_FALLBACK" = "Lewdgrip Whiparm",
          name
          )
 }
