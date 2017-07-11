@@ -127,6 +127,7 @@ id_to_playertype <- function(id) {
          "243" = "Star Player",
          "251" = "Star Player",
          "254" = "Star Player",
+         "275" = "Star Player",
          "277" = "Star Player",
          "Unknown playertype"
   )
@@ -197,6 +198,7 @@ star_player_name <- function(name) {
          "PLAYER_NAMES_CHAMPION_ORC" = "Varag Ghoul-Chewer",
          "PLAYER_NAMES_CHAMPION_CHAOS" = "Grashnak Blackhoof",
          "PLAYER_NAMES_CHAMPION_ZZHARGMADEYE" = "Zzharg Madeye",
+         "PLAYER_NAMES_CHAMPION_HEMLOCK" = "Hemlock",
          name
          )
 }
