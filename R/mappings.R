@@ -105,6 +105,7 @@ id_to_playertype <- function(id) {
          "93" = "Nurgle Warrior",
          "94" = "Beast of Nurgle",
          "101" = "Star Player",
+         "104" = "Star Player",
          "108" = "Hobgoblin",
          "109" = "Blocker",
          "110" = "Bull Centaur",
@@ -113,6 +114,7 @@ id_to_playertype <- function(id) {
          "139" = "Lineman",
          "140" = "Blitzer",
          "141" = "Blocker",
+         "149" = "Star Player",
          "251" = "Star Player",
          "254" = "Star Player",
          "277" = "Star Player",
@@ -162,7 +164,7 @@ id_to_casualty <- function(id) {
 #' @return Human readable Star Player name
 #' @export
 #'
-#' @example star_player_name(PLAYER_NAMES_CHAMPION_HUMAIN) #Griff Oberwald
+#' @example star_player_name("PLAYER_NAMES_CHAMPION_HUMAIN") #Griff Oberwald
 star_player_name <- function(name) {
   switch(name,
          "PLAYER_NAMES_CHAMPION_SKITTER_FALLBACK" = "Skitter Stab-Stab",
@@ -173,6 +175,8 @@ star_player_name <- function(name) {
          "PLAYER_NAMES_CHAMPION_RAMTUTIII" = "Ramtut III",
          "PLAYER_NAMES_CHAMPION_LORDBORAKTHEDESPOILER" = "Lord Borak the Despoiler",
          "PLAYER_NAMES_CHAMPION_LEWDGRIP_FALLBACK" = "Lewdgrip Whiparm",
+         "PLAYER_NAMES_CHAMPION_GLART" = "Glart Smashrip",
+         "PLAYER_NAMES_CHAMPION_NEKBREKEREKH" = "Setekh",
          name
          )
 }
