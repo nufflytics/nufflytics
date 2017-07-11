@@ -70,6 +70,21 @@ parse_injuries <- function(player_result) {
    cas1
 }
 
+#' Parse permanent injuries for a player
+#'
+#' @param cas_list listCasualties from the playerResults list from Cyanide's GetMatch API for a team
+#'
+#' @return Any permanent injuries (niggle or stat bust) sustained by a player
+#' @export
+parse_perms <- function(cas_list) {
+  if(length(cas_list) == 0) return(NA_character_)
+  cas_list %>%
+    magrittr::extract(which(. >= 10)) %>% # Niggle or worse
+    map_chr(id_to_casualty) %>%
+    paste0(collapse = ", ") %>%
+    magrittr::inset(which(. == ""), NA_character_) # only BH/MNG in perm list
+}
+
 #' Get team score
 #'
 #' @param match_data Match data object from \link{\code{get_game_stats}}
@@ -78,7 +93,6 @@ parse_injuries <- function(player_result) {
 #' @return Number of touchdowns scored by the specified team
 #' @export
 #'
-#' @examples
 score <- function(match_data, team) {
   score_string <- paste0(team,"Score")
 
@@ -99,11 +113,12 @@ player_data <- function(match_data, team) {
   team = c("home" = 1, "away" = 2)[[team]]
   playerResults <- match_data$MatchResultDetails$coachResults[[team]]$teamResult$playerResults
 
-  data_frame(
+  dplyr::data_frame(
     name     = playerResults %>% purrr::map("playerData") %>% purrr::map("name") %>% purrr::map_chr(star_player_name),
     type     = playerResults %>% purrr::map("playerData") %>% purrr::map_int("idPlayerTypes") %>% purrr::map_chr(id_to_playertype),
     skills   = playerResults %>% purrr::map("playerData") %>% purrr::map("listSkills") %>% purrr::map2(list(match_data), ~parse_skills(.y,.x)) %>% purrr::map_chr(paste0,collapse=", ") %>% magrittr::inset(which(.==""), "Unskilled"),
     injuries = playerResults %>% purrr::map_chr(parse_injuries),
+    perms    = playerResults %>% purrr::map("playerData") %>% purrr::map("listCasualties") %>% purrr:::map_chr(parse_perms),
     SPP      = playerResults %>% purrr::map("playerData") %>% purrr::map_int("experience"),
     SPP_gain = playerResults %>% purrr::map_int("xp"),
     lvlup    = purrr::map2_lgl(SPP,SPP_gain, did_level_up)
