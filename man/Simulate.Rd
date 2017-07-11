@@ -9,16 +9,18 @@ process_season(teams, schedule, weights = list(c(60, 20, 20)),
   simulation_run = 0)
 
 simulate_league(teams, schedule, weights = list(c(60, 20, 20)),
-  num_sims = 100)
+  num_sims = 10)
 }
 \arguments{
-\item{teams}{List of teams in the league constructed with \code{\link{make_team}}}
+\item{teams}{Data frame of with team_name, race, TV_displayed, TV_extra, wins, losses, draws.}
 
 \item{schedule}{Data frame containing the league schedule. Must contain \code{round}, \code{home_team}, and\code{away_team}}
 
-\item{weights}{List containing a vector per round of three weights for combining probabilities from CCL data and a team's own record. Provided to the \code{\link{calc_game_probs}} function. If a list with a single vector is provides, it expands it up to the length of the season, \code{i.e.} it is a shortcut for providing constant weights for all rounds.}
+\item{weights}{List containing a vector per round of three weights for combining probabilities from CCL data and a team's own record. Provided to the \code{\link{calc_game_probs}} function. If a list with a single vector is provided, it expands it up to the length of the season, \code{i.e.} it is a shortcut for providing constant weights for all rounds.}
 
 \item{simulation_run}{Number of this simulation run. Used to print logging info to console so monitor simulation progress when performed in bulk}
+
+\item{num_sims}{Total number of simulations to run. Defaults to 10 for a quick run to check that everything is working. Recommend changing it to 1000 or more for real predictions}
 }
 \value{
 Data frame containing the predicted results of the season.

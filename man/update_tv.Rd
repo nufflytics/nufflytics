@@ -13,5 +13,5 @@ update_tv(team)
 Returns the passed team object with an updated TV
 }
 \description{
-Takes a team object and changes it's TV to something new. Takes the TV change from CCL data for the relevant race within +- 20 TV of the team's pre-game TV. To avoid single occurance outliers having a large impact on the results, sample three options and take the median
+Takes a team object and changes it's TV to something new. Takes the TV change from CCL data for the relevant race within +- 20 TV of the team's pre-game TV. To avoid single occurance outliers having a large impact on the results, sample five options and take the median
 }
