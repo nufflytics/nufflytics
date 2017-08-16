@@ -80,6 +80,7 @@ id_to_playertype <- function(id) {
          "50" = "Blitzer",
          "51" = "Witch Elf",
          "52" = "Star Player",
+         "53" = "Star Player",
          "54" = "Skeleton",
          "55" = "Zombie",
          "56" = "Ghoul",
@@ -109,6 +110,7 @@ id_to_playertype <- function(id) {
          "93" = "Nurgle Warrior",
          "94" = "Beast of Nurgle",
          "101" = "Star Player",
+         "102" = "Star Player",
          "104" = "Star Player",
          "108" = "Hobgoblin",
          "109" = "Blocker",
@@ -129,6 +131,7 @@ id_to_playertype <- function(id) {
          "254" = "Star Player",
          "275" = "Star Player",
          "277" = "Star Player",
+         "282" = "Star Player",
          "Unknown playertype"
   )
 }
@@ -199,6 +202,108 @@ star_player_name <- function(name) {
          "PLAYER_NAMES_CHAMPION_CHAOS" = "Grashnak Blackhoof",
          "PLAYER_NAMES_CHAMPION_ZZHARGMADEYE" = "Zzharg Madeye",
          "PLAYER_NAMES_CHAMPION_HEMLOCK" = "Hemlock",
+         "PLAYER_NAMES_CHAMPION_LOTTABOTTOL_FALLBACK" = "Lottabottol",
+         "PLAYER_NAMES_CHAMPION_MORGNTHORG" = "Morg 'n' Thorg",
          name
          )
+}
+
+
+##### Brought across from old package ----
+#Collection of data structures containing long and boring information. Eg. translation tables for action types, or lists of metadata values to extract from the replay file
+
+#' Return a .bbrz filepath for testing
+#' @export
+test_file <- function() {"/Users/pea25i/Library/Application Support/BloodBowl2/Profiles/5E7AF328CEDDB99407DF4F74178D9228/Replays//Coach-49988-b428805ea5a58d7629fd8888b7f3d1c8_2017-01-13_01_49_50.bbrz"}
+
+#' Sets up a new test replay file on restart without long data load process
+#' @export
+set_up_new_test_file <- function() {
+  r = readRDS("data/test_replay_file.Rds")
+  r$xml = xml2::read_xml(unzip(test_file(), exdir = "/tmp"))
+
+  r
+}
+
+metadata_to_collect <- function() {
+  c(
+    "HomeScore",
+    "AwayScore",
+    "CoachHomeName",
+    "CoachAwayName",
+    "TeamHomeName",
+    "TeamAwayName",
+    "IdCoachHome",
+    "IdCoachAway",
+    "Finished"
+  )
+}
+
+model_type <- function(player_type_id) {
+  mapping <- c(
+    "27" = "Skink",
+    "28" = "Saurus",
+    "29" = "Kroxigor",
+    "54" = "Skeleton",
+    "55" = "Zombie",
+    "56" = "Ghoul",
+    "57" = "Wight",
+    "58" = "Mummy"
+  )
+
+  if (player_type_id %in% names(mapping)) return(mapping[player_type_id])
+  else return(player_type_id)
+}
+
+player_class <- function(player_type) {
+  mapping <- c(
+    "Skink" = "stunty",
+    "Saurus" = "high_strength",
+    "Kroxigor" = "big_guy",
+    "Skeleton" = "lineman",
+    "Zombie" = "lineman",
+    "Ghoul" = "positional",
+    "Wight" = "blitzer",
+    "Mummy" = "big_guy"
+  )
+
+  if (player_type %in% names(mapping)) return(mapping[player_type])
+  else return(player_type)
+}
+
+action_type <- function(action_type_id) {
+  mapping <- c(
+    "1"  = "Block",
+    "2"  = "Blitz",
+    "4"  = "Handoff",
+    "5"  = "Foul?",
+    "6"  = "Blocked Down?",
+    "15" = "Negatrait",
+    "42" = "Move/Activate?"
+  )
+
+  if (action_type_id %in% names(mapping)) return(mapping[action_type_id])
+  else return(action_type_id)
+}
+
+roll_type <- function(roll_type_id) {
+  mapping <- c(
+    "1"  = "GFI",
+    "2"  = "Dodge",
+    "3"  = "Armour",
+    "4"  = "Injury",
+    "5"  = "Block",
+    "7"  = "Pickup",
+    "9"  = "Catch",
+    "10" = "Scatter",
+    "12" = "Pass",
+    "16" = "Intercept?",
+    "20" = "Bonehead",
+    "21" = "Really Stupid",
+    "22" = "Wild Animal",
+    "23" = "Loner"
+  )
+
+  if (roll_type_id %in% names(mapping)) return(mapping[roll_type_id])
+  else return(roll_type_id)
 }
