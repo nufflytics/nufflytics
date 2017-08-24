@@ -86,6 +86,7 @@ id_to_playertype <- function(id) {
          "56" = "Ghoul",
          "57" = "Wight",
          "58" = "Mummy",
+         "59" = "Star Player",
          "62" = "Lineman",
          "63" = "Thrower",
          "64" = "Runner",
@@ -204,6 +205,7 @@ star_player_name <- function(name) {
          "PLAYER_NAMES_CHAMPION_HEMLOCK" = "Hemlock",
          "PLAYER_NAMES_CHAMPION_LOTTABOTTOL_FALLBACK" = "Lottabottol",
          "PLAYER_NAMES_CHAMPION_MORGNTHORG" = "Morg 'n' Thorg",
+         "PLAYER_NAMES_CHAMPION_UNDEAD" = "Count Luthor Von Drakenborg",
          name
          )
 }
