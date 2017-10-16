@@ -5,7 +5,7 @@
 \title{Coach information}
 \usage{
 api_coaches(key = NULL, league = NULL, competition = NULL,
-  platform = NULL, limit = NULL)
+  platform = NULL, limit = NULL, ...)
 }
 \arguments{
 \item{key}{API access key (required)}

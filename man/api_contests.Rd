@@ -6,7 +6,7 @@
 \usage{
 api_contests(key = NULL, league = NULL, competition = NULL,
   status = NULL, limit = NULL, round = NULL, platform = NULL,
-  exact = 1)
+  exact = 1, ...)
 }
 \arguments{
 \item{key}{API access key (required)}

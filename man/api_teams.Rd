@@ -2,10 +2,10 @@
 % Please edit documentation in R/api.R
 \name{api_teams}
 \alias{api_teams}
-\title{Team information}
+\title{Teams information}
 \usage{
 api_teams(key = NULL, league = NULL, competition = NULL,
-  platform = NULL, limit = NULL)
+  platform = NULL, limit = NULL, ...)
 }
 \arguments{
 \item{key}{API access key (required)}

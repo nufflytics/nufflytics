@@ -5,7 +5,7 @@
 \title{List matches for a league/competition}
 \usage{
 api_matches(key = NULL, league = NULL, competition = NULL,
-  platform = NULL, limit = NULL, start = NULL, end = NULL)
+  platform = NULL, limit = NULL, start = NULL, end = NULL, ...)
 }
 \arguments{
 \item{key}{API access key (required)}

@@ -2,9 +2,9 @@
 % Please edit documentation in R/api.R
 \name{api_team}
 \alias{api_team}
-\title{Title}
+\title{Team information}
 \usage{
-api_team(key = NULL, name = NULL, id = NULL, platform = NULL)
+api_team(key = NULL, name = NULL, id = NULL, platform = NULL, ...)
 }
 \arguments{
 \item{key}{API access key (required)}
@@ -24,5 +24,5 @@ List containing five named elements:
 \item{\code{meta}: a list of information about the query}
 }
 \description{
-Title
+Team information
 }

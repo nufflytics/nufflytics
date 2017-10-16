@@ -5,7 +5,7 @@
 \title{Hall of Fame stats for a league/competition}
 \usage{
 api_halloffame(key = NULL, league = NULL, competition = NULL,
-  platform = NULL, limit = NULL, exact = 1)
+  platform = NULL, limit = NULL, exact = 1, ...)
 }
 \arguments{
 \item{key}{API access key (required)}

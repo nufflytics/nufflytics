@@ -5,7 +5,7 @@
 \title{Competition Ladder}
 \usage{
 api_ladder(key = NULL, league = NULL, competition = NULL,
-  ladder_size = NULL)
+  ladder_size = NULL, ...)
 }
 \arguments{
 \item{key}{API access key (required)}

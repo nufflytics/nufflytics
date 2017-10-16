@@ -17,24 +17,13 @@
 #'
 #' @examples
 #'
-api_coaches <- function(key = NULL, league = NULL, competition = NULL, platform = NULL, limit = NULL) {
-
-  if(is.null(key)) stop("API access key is required")
-
-  ret = httr::GET(
-    "http://web.cyanide-studio.com",
-    path=c("ws","bb2","coaches",""),
-    query = list(key=key, league=league, competition=competition, platform=platform, limit=limit)
-    )
-  httr::warn_for_status(ret, "get coach list")
-
-  type = headers(ret)$`content-type`
-
-  if (grepl("application/json", type)) {
-    ret %>% httr::content(as="text") %>% jsonlite::fromJSON()
-  } else {
-    stop("Coaches API not returning json data")
-  }
+api_coaches <- function(key = NULL, league = NULL, competition = NULL, platform = NULL, limit = NULL, ...) {
+  api_call(
+    method = "coaches",
+    params = list(key=key, league=league, competition=competition, platform=platform, limit = limit),
+    simplify = T,
+    ...
+  )
 }
 
 #' List matches for a league/competition
@@ -60,28 +49,16 @@ api_coaches <- function(key = NULL, league = NULL, competition = NULL, platform 
 #' @export
 #'
 #' @examples
-api_matches <- function(key = NULL, league = NULL, competition = NULL, platform = NULL, limit = NULL, start  = NULL, end = NULL) {
-
-  if(is.null(key)) stop("API access key is required")
-
-  ret = httr::GET(
-    "http://web.cyanide-studio.com",
-    path=c("ws","bb2","matches",""),
-    query = list(key=key, league=league, competition=competition, platform=platform, limit=limit, start=start, end=end)
+api_matches <- function(key = NULL, league = NULL, competition = NULL, platform = NULL, limit = NULL, start  = NULL, end = NULL, ...) {
+  api_call(
+    method = "matches",
+    params = list(key = key, league = league, competition = competition, platform = platform, limit = limit, start = start, end = end),
+    ...
   )
-  httr::warn_for_status(ret, "get match list")
-
-  type = headers(ret)$`content-type`
-
-  if (grepl("application/json", type)) {
-    ret %>% httr::content(as="text") %>% jsonlite::fromJSON(simplifyDataFrame = F)
-  } else {
-    stop("Matches API not returning json data")
-  }
 }
 
 
-#' Team information
+#' Teams information
 #'
 #' Returns information for teams in a league/competition
 #'
@@ -101,24 +78,13 @@ api_matches <- function(key = NULL, league = NULL, competition = NULL, platform 
 #' @export
 #'
 #' @examples
-api_teams <- function(key = NULL, league = NULL, competition = NULL, platform = NULL, limit = NULL) {
-
-  if(is.null(key)) stop("API access key is required")
-
-  ret = httr::GET(
-    "http://web.cyanide-studio.com",
-    path=c("ws","bb2","teams",""),
-    query = list(key=key, league=league, competition=competition, platform=platform, limit=limit)
+api_teams <- function(key = NULL, league = NULL, competition = NULL, platform = NULL, limit = NULL, ...) {
+  api_call(
+    method = "teams",
+    params = list(key = key, league = league, competition = competition, platform = platform, limit = limit),
+    simplify = T,
+    ...
   )
-  httr::warn_for_status(ret, "get team list")
-
-  type = headers(ret)$`content-type`
-
-  if (grepl("application/json", type)) {
-    ret %>% httr::content(as="text") %>% jsonlite::fromJSON()
-  } else {
-    stop("Matches API not returning json data")
-  }
 }
 
 #' Competition Ladder
@@ -137,23 +103,13 @@ api_teams <- function(key = NULL, league = NULL, competition = NULL, platform = 
 #' @export
 #'
 #' @examples
-api_ladder <- function(key = NULL, league = NULL, competition = NULL, ladder_size = NULL) {
-  if(is.null(key)) stop("API access key is required")
-
-  ret = httr::GET(
-    "http://web.cyanide-studio.com",
-    path=c("ws","bb2","ladder",""),
-    query = list(key=key, league=league, competition=competition, ladder_size=ladder_size)
+api_ladder <- function(key = NULL, league = NULL, competition = NULL, ladder_size = NULL, ...) {
+  api_call(
+    method = "ladder",
+    params = list(key = key, league = league, competition = competition, ladder_size = ladder_size),
+    simplify = T,
+    ...
   )
-  httr::warn_for_status(ret, "get competition ladder")
-
-  type = headers(ret)$`content-type`
-
-  if (grepl("application/json", type)) {
-    ret %>% httr::content(as="text") %>% jsonlite::fromJSON()
-  } else {
-    stop("Ladder API not returning json data")
-  }
 }
 
 
@@ -179,23 +135,12 @@ api_ladder <- function(key = NULL, league = NULL, competition = NULL, ladder_siz
 #'
 #' @examples
 #'
-api_match <- function(key = NULL, match_id = NULL, platform = NULL) {
-  if(is.null(key)) stop("API access key is required")
-
-  ret = httr::GET(
-    "http://web.cyanide-studio.com",
-    path=c("ws","bb2","match",""),
-    query = list(key=key, match_id=match_id, platform=platform)
+api_match <- function(key = NULL, match_id = NULL, platform = NULL, ...) {
+  api_call(
+    method = "match",
+    params = list(key = key, match_id = match_id, platform = platform),
+    ...
   )
-  httr::warn_for_status(ret, "get match details")
-
-  type = headers(ret)$`content-type`
-
-  if (grepl("application/json", type)) {
-    ret %>% httr::content(as="text") %>% jsonlite::fromJSON(simplifyDataFrame = F)
-  } else {
-    stop("Match API not returning json data")
-  }
 }
 
 
@@ -212,23 +157,12 @@ api_match <- function(key = NULL, match_id = NULL, platform = NULL) {
 #' @export
 #'
 #' @examples
-api_halloffame <- function(key = NULL, league = NULL, competition = NULL, platform = NULL, limit = NULL, exact = 1) {
-  if(is.null(key)) stop("API access key is required")
-
-  ret = httr::GET(
-    "http://web.cyanide-studio.com",
-    path=c("ws","bb2","halloffame",""),
-    query = list(key=key, league=league, competition=competition, platform=platform, limit=limit, exact=exact)
+api_halloffame <- function(key = NULL, league = NULL, competition = NULL, platform = NULL, limit = NULL, exact = 1, ...) {
+  api_call(
+    method = "halloffame",
+    params = list(key = key, league = league, competition = competition, platform = platform, limit = limit, exact = exact),
+    ...
   )
-  httr::warn_for_status(ret, "get hall of fame details")
-
-  type = headers(ret)$`content-type`
-
-  if (grepl("application/json", type)) {
-    ret %>% httr::content(as="text") %>% jsonlite::fromJSON(simplifyDataFrame = F)
-  } else {
-    stop("Hall of Fame API not returning json data")
-  }
 }
 
 #' Contests
@@ -252,27 +186,16 @@ api_halloffame <- function(key = NULL, league = NULL, competition = NULL, platfo
 #' @export
 #'
 #' @examples
-api_contests <- function(key = NULL, league = NULL, competition = NULL, status = NULL, limit = NULL, round = NULL, platform = NULL, exact = 1) {
-  if(is.null(key)) stop("API access key is required")
-
-  ret = httr::GET(
-    "http://web.cyanide-studio.com",
-    path=c("ws","bb2","contests",""),
-    query = list(key=key, league=league, competition=competition, platform=platform, limit=limit, status=status, round=round, exact=exact)
+api_contests <- function(key = NULL, league = NULL, competition = NULL, status = NULL, limit = NULL, round = NULL, platform = NULL, exact = 1, ...) {
+  api_call(
+    method = "contests",
+    params = list(key = key, league = league, competition = competition, status = status, limit = limit, round = round, platform = platform, exact = exact),
+    ...
   )
-  httr::warn_for_status(ret, "get contest details")
-
-  type = headers(ret)$`content-type`
-
-  if (grepl("application/json", type)) {
-    ret %>% httr::content(as="text") %>% jsonlite::fromJSON(simplifyDataFrame = F)
-  } else {
-    stop("Contests API not returning json data")
-  }
 }
 
 
-#' Title
+#' Team information
 #'
 #' @param key API access key (required)
 #' @param name Team name (ignored if id is provided)
@@ -289,21 +212,45 @@ api_contests <- function(key = NULL, league = NULL, competition = NULL, status =
 #' @export
 #'
 #' @examples
-api_team <- function(key = NULL, name = NULL, id = NULL, platform = NULL) {
-  if(is.null(key)) stop("API access key is required")
+api_team <- function(key = NULL, name = NULL, id = NULL, platform = NULL, ...) {
+  api_call(
+    method = "team",
+    params = list(key = key, name = name, id = id, platform = platform),
+    ...
+  )
+}
+
+#' Generic API call method
+#'
+#' To be customised for each available method
+#'
+#' @param method The name of the method to call
+#' @param params The query parameters to call the method with
+#' @param simplify Should the resulting data be simplified? \code{\link[jsonlite](fromJSON)} parameter \code{simplifyDataFrame}.
+#'
+#' @return The data from the specified API call as a list
+#'
+#' @examples
+api_call <- function(method, params, simplify = F, debug = F) {
+
+  if(is.null(params$key)) stop("API access key is required")
 
   ret = httr::GET(
     "http://web.cyanide-studio.com",
-    path=c("ws","bb2","team",""),
-    query = list(key=key, name=name, id=id, platform=platform)
+    path=c("ws","bb2",method,""),
+    query = params
   )
-  httr::warn_for_status(ret, "get team details")
+  httr::warn_for_status(ret)
 
-  type = headers(ret)$`content-type`
+  type = httr::headers(ret)$`content-type`
+
+  ret_list <- ret %>% httr::content(as = "text") %>% jsonlite::fromJSON(simplifyDataFrame = simplify)
+
+  if (debug) ret_list$response <- ret
 
   if (grepl("application/json", type)) {
-    ret %>% httr::content(as="text") %>% jsonlite::fromJSON(simplifyDataFrame = F)
+    ret_list
   } else {
-    stop("Team API not returning json data")
+    stop(paste(stringr::str_to_title(method), "API not returning json data"))
   }
 }
