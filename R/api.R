@@ -17,7 +17,7 @@
 #'
 #' @examples
 #'
-api_coaches <- function(key = NULL, league = NULL, competition = NULL, platform = NULL, limit = NULL, ...) {
+api_coaches <- function(key = NA, league = NA, competition = NA, platform = NA, limit = NA, ...) {
   api_call(
     method = "coaches",
     params = list(key=key, league=league, competition=competition, platform=platform, limit = limit),
@@ -49,7 +49,7 @@ api_coaches <- function(key = NULL, league = NULL, competition = NULL, platform 
 #' @export
 #'
 #' @examples
-api_matches <- function(key = NULL, league = NULL, competition = NULL, platform = NULL, limit = NULL, start  = NULL, end = NULL, ...) {
+api_matches <- function(key = NA, league = NA, competition = NA, platform = NA, limit = NA, start  = NA, end = NA, ...) {
   api_call(
     method = "matches",
     params = list(key = key, league = league, competition = competition, platform = platform, limit = limit, start = start, end = end),
@@ -78,7 +78,7 @@ api_matches <- function(key = NULL, league = NULL, competition = NULL, platform 
 #' @export
 #'
 #' @examples
-api_teams <- function(key = NULL, league = NULL, competition = NULL, platform = NULL, limit = NULL, ...) {
+api_teams <- function(key = NA, league = NA, competition = NA, platform = NA, limit = NA, ...) {
   api_call(
     method = "teams",
     params = list(key = key, league = league, competition = competition, platform = platform, limit = limit),
@@ -103,7 +103,7 @@ api_teams <- function(key = NULL, league = NULL, competition = NULL, platform = 
 #' @export
 #'
 #' @examples
-api_ladder <- function(key = NULL, league = NULL, competition = NULL, ladder_size = NULL, ...) {
+api_ladder <- function(key = NA, league = NA, competition = NA, ladder_size = NA, ...) {
   api_call(
     method = "ladder",
     params = list(key = key, league = league, competition = competition, ladder_size = ladder_size),
@@ -135,7 +135,7 @@ api_ladder <- function(key = NULL, league = NULL, competition = NULL, ladder_siz
 #'
 #' @examples
 #'
-api_match <- function(key = NULL, match_id = NULL, platform = NULL, ...) {
+api_match <- function(key = NA, match_id = NA, platform = NA, ...) {
   api_call(
     method = "match",
     params = list(key = key, match_id = match_id, platform = platform),
@@ -157,7 +157,7 @@ api_match <- function(key = NULL, match_id = NULL, platform = NULL, ...) {
 #' @export
 #'
 #' @examples
-api_halloffame <- function(key = NULL, league = NULL, competition = NULL, platform = NULL, limit = NULL, exact = 1, ...) {
+api_halloffame <- function(key = NA, league = NA, competition = NA, platform = NA, limit = NA, exact = 1, ...) {
   api_call(
     method = "halloffame",
     params = list(key = key, league = league, competition = competition, platform = platform, limit = limit, exact = exact),
@@ -186,7 +186,7 @@ api_halloffame <- function(key = NULL, league = NULL, competition = NULL, platfo
 #' @export
 #'
 #' @examples
-api_contests <- function(key = NULL, league = NULL, competition = NULL, status = NULL, limit = NULL, round = NULL, platform = NULL, exact = 1, ...) {
+api_contests <- function(key = NA, league = NA, competition = NA, status = NA, limit = NA, round = NA, platform = NA, exact = 1, ...) {
   api_call(
     method = "contests",
     params = list(key = key, league = league, competition = competition, status = status, limit = limit, round = round, platform = platform, exact = exact),
@@ -212,7 +212,7 @@ api_contests <- function(key = NULL, league = NULL, competition = NULL, status =
 #' @export
 #'
 #' @examples
-api_team <- function(key = NULL, name = NULL, id = NULL, platform = NULL, ...) {
+api_team <- function(key = NA, name = NA, id = NA, platform = NA, ...) {
   api_call(
     method = "team",
     params = list(key = key, name = name, id = id, platform = platform),
@@ -232,6 +232,8 @@ api_team <- function(key = NULL, name = NULL, id = NULL, platform = NULL, ...) {
 #'
 #' @examples
 api_call <- function(method, params, simplify = F, debug = F) {
+
+  params <- purrr::modify_if(params, is.na, as.null)
 
   if(is.null(params$key)) stop("API access key is required")
 
