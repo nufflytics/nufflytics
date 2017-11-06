@@ -366,6 +366,7 @@ id_to_playertype <- function(id) {
 #' @export
 #'
 id_to_casualty <- function(id) {
+  if(is.null(id)) return(NULL)
   id = as.character(id)
   switch(id,
          "0"  = NA,
