@@ -4,9 +4,8 @@
 \alias{api_contests}
 \title{Contests}
 \usage{
-api_contests(key = NULL, league = NULL, competition = NULL,
-  status = NULL, limit = NULL, round = NULL, platform = NULL,
-  exact = 1, ...)
+api_contests(key = NA, league = NA, competition = NA, status = NA,
+  limit = NA, round = NA, platform = NA, exact = 1, ...)
 }
 \arguments{
 \item{key}{API access key (required)}

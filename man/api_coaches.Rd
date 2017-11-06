@@ -4,8 +4,8 @@
 \alias{api_coaches}
 \title{Coach information}
 \usage{
-api_coaches(key = NULL, league = NULL, competition = NULL,
-  platform = NULL, limit = NULL, ...)
+api_coaches(key = NA, league = NA, competition = NA, platform = NA,
+  limit = NA, ...)
 }
 \arguments{
 \item{key}{API access key (required)}

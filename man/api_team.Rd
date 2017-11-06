@@ -4,7 +4,7 @@
 \alias{api_team}
 \title{Team information}
 \usage{
-api_team(key = NULL, name = NULL, id = NULL, platform = NULL, ...)
+api_team(key = NA, name = NA, id = NA, platform = NA, ...)
 }
 \arguments{
 \item{key}{API access key (required)}

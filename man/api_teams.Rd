@@ -4,8 +4,8 @@
 \alias{api_teams}
 \title{Teams information}
 \usage{
-api_teams(key = NULL, league = NULL, competition = NULL,
-  platform = NULL, limit = NULL, ...)
+api_teams(key = NA, league = NA, competition = NA, platform = NA,
+  limit = NA, ...)
 }
 \arguments{
 \item{key}{API access key (required)}

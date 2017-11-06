@@ -4,8 +4,8 @@
 \alias{api_ladder}
 \title{Competition Ladder}
 \usage{
-api_ladder(key = NULL, league = NULL, competition = NULL,
-  ladder_size = NULL, ...)
+api_ladder(key = NA, league = NA, competition = NA, ladder_size = NA,
+  ...)
 }
 \arguments{
 \item{key}{API access key (required)}

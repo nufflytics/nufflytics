@@ -4,8 +4,8 @@
 \alias{api_matches}
 \title{List matches for a league/competition}
 \usage{
-api_matches(key = NULL, league = NULL, competition = NULL,
-  platform = NULL, limit = NULL, start = NULL, end = NULL, ...)
+api_matches(key = NA, league = NA, competition = NA, platform = NA,
+  limit = NA, start = NA, end = NA, ...)
 }
 \arguments{
 \item{key}{API access key (required)}

@@ -4,7 +4,7 @@
 \alias{api_match}
 \title{Detailed match information}
 \usage{
-api_match(key = NULL, match_id = NULL, platform = NULL, ...)
+api_match(key = NA, match_id = NA, platform = NA, ...)
 }
 \arguments{
 \item{key}{API access key (required)}
