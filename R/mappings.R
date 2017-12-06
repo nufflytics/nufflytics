@@ -447,6 +447,7 @@ star_player_name <- function(name) {
          "PLAYER_NAMES_CHAMPION_UGROTH_FALLBACK" = "Ugroth Bolgrot",
          "PLAYER_NAMES_CHAMPION_FEZGLITCH_FALLBACK" = "Fezglitch",
          "PLAYER_NAMES_CHAMPION_BERTHA_FALLBACK" = "Bertha Bigfist",
+         "PLAYER_NAMES_CHAMPION_PUGGY_FALLBACK" = "Puggy Baconbreath",
          name
          )
 }
