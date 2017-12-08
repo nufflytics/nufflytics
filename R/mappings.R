@@ -392,6 +392,42 @@ id_to_casualty <- function(id) {
   )
 }
 
+#' Casualty state to effect
+#'
+#' Casualties are stored internally as specific injuries (from CRP table). This converts them into the in game effect on the player.
+#'
+#' @param state string describing the casualty
+#'
+#' @return a string describing the effect of the casualty (MNG/Niggle/etc.)
+#' @export
+#'
+#' @examples
+state_to_casualty <- function(state) {
+  if(is.null(state)) return(NULL)
+  state = as.character(state)
+  switch (state,
+    "BadlyHurt" = "BH",
+    "BrokenRibs" = "MNG",
+    "GroinStrain" = "MNG",
+    "GougedEye" = "MNG",
+    "BrokenJaw" = "MNG",
+    "FracturedArm" = "MNG",
+    "FracturedLeg" = "MNG",
+    "SmashedHand" = "MNG",
+    "PinchedNerve" = "MNG",
+    "DamagedBack" = "Niggle",
+    "SmashedKnee" = "Niggle",
+    "SmashedHip" = "-MA",
+    "SmashedAnkle" = "-MA",
+    "SeriousConcussion" = "-AV",
+    "FracturedSkull" = "-AV",
+    "BrokenNeck" = "-AG",
+    "SmashedCollarBone" = "-ST",
+    "Dead" = "Dead",
+    "Unknown casualty"
+  )
+}
+
 #' Star Player Names
 #'
 #' Converts internal Star Player names into human readable forms
