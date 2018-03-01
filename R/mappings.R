@@ -32,6 +32,11 @@ id_to_race <- function(id) {
          "22" = "Underworld Denizens",
          "24" = "Brettonian",
          "25" = "Kislev Circus",
+         "33" = "Chaotic Player Pact",
+         "35" = "Far East Association",
+         "37" = "Anti-Fur Society",
+         "38" = "Alliance of Goodness",
+         "42" = "Afterlife United",
          "Unknown race"
   )
 }
