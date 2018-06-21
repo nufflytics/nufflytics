@@ -414,7 +414,7 @@ state_to_casualty <- function(state) {
     "BadlyHurt" = "BH",
     "BrokenRibs" = "MNG",
     "GroinStrain" = "MNG",
-    "GougedEye" = "MNG",
+    "GougedEyes" = "MNG",
     "BrokenJaw" = "MNG",
     "FracturedArm" = "MNG",
     "FracturedLeg" = "MNG",
