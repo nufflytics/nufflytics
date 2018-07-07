@@ -57,6 +57,32 @@ api_matches <- function(key = NA, league = NA, competition = NA, platform = NA, 
   )
 }
 
+#' League information
+#'
+#' Returns information about a specified league
+#'
+#' @param key API access key (required)
+#' @param league League name (defaults to Cabalvision Official League)
+#' @param platform pc, ps4, or xb1 (optional)
+#'
+#' @return List containing two named elements:
+#' \itemize{
+#' \item{\code{league}: a list of league information - date_last_match, logo, treasury, team_count}
+#' \item{\code{meta}: a list containing information about the query}
+#' }
+#'
+#' @export
+#'
+#' @examples
+api_league <- function(key = NA, league = NA, platform = NA, ...) {
+  api_call(
+    method = "league",
+    params = list(key = key, league = league, platform = platform),
+    simplify = F,
+    ...
+  )
+}
+
 
 #' Teams information
 #'
