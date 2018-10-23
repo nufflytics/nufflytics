@@ -489,6 +489,12 @@ star_player_name <- function(name) {
          "PLAYER_NAMES_CHAMPION_FEZGLITCH_FALLBACK" = "Fezglitch",
          "PLAYER_NAMES_CHAMPION_BERTHA_FALLBACK" = "Bertha Bigfist",
          "PLAYER_NAMES_CHAMPION_PUGGY_FALLBACK" = "Puggy Baconbreath",
+         "PLAYER_NAMES_CHAMPION_HUMERUS_FALLBACK" = "Humerus Carpal",
+         "PLAYER_NAMES_CHAMPION_IGOR_FALLBACK" = "Crazy Igor",
+         "PLAYER_NAMES_CHAMPION_HAKFLEMSKUTTLESPIKE" = "Hakflem Skuttlespike",
+         "PLAYER_NAMES_CHAMPION_NAIN" = "Grim Ironjaw",
+         "PLAYER_NAMES_CHAMPION_FLINT_FALLBACK" = "Flint Churnblade",
+         "PLAYER_NAMES_CHAMPION_ELFE_SYLVAIN" = "Jordel Freshbreeze",
          name
          )
 }
