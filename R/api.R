@@ -35,6 +35,7 @@ api_coaches <- function(key = NA, league = NA, competition = NA, platform = NA, 
 #' @param competition Competition name (optional)
 #' @param platform pc, ps4, or xb1 (optional)
 #' @param limit Number of entries to return (defaults to 100)
+#' @param id_only Return match summaries or just the match id (0|1, defaults to match summary)
 #' @param start Start date (defaults to 20 days ago)
 #' @param end End date (defaults to today)
 #'
@@ -49,10 +50,10 @@ api_coaches <- function(key = NA, league = NA, competition = NA, platform = NA, 
 #' @export
 #'
 #' @examples
-api_matches <- function(key = NA, league = NA, competition = NA, platform = NA, limit = NA, start  = NA, end = NA, ...) {
+api_matches <- function(key = NA, league = NA, competition = NA, platform = NA, limit = NA, id_only = NA, start  = NA, end = NA, ...) {
   api_call(
     method = "matches",
-    params = list(key = key, league = league, competition = competition, platform = platform, limit = limit, start = start, end = end),
+    params = list(key = key, league = league, competition = competition, platform = platform, limit = limit, id_only = id_only, start = start, end = end),
     ...
   )
 }
