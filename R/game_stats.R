@@ -103,7 +103,7 @@ score <- function(match_data, team) {
 #'
 #' Gets player data for a match. Recording injuries received and SPP gained.
 #'
-#' @param match_data Match data object from \link{\code{get_game_stats}}
+#' @param match_data Match data object from \code{get_game_stats}
 #' @param team One of \code{"home"} or \code{"away"} to identify the team
 #'
 #' @return A \code{data_frame} containing summary information for players who played during the match
