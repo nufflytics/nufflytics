@@ -7,7 +7,7 @@
 player_data(match_data, team)
 }
 \arguments{
-\item{match_data}{Match data object from \link{\code{get_game_stats}}}
+\item{match_data}{Match data object from \code{get_game_stats}}
 
 \item{team}{One of \code{"home"} or \code{"away"} to identify the team}
 }

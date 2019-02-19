@@ -5,7 +5,7 @@
 \title{List matches for a league/competition}
 \usage{
 api_matches(key = NA, league = NA, competition = NA, platform = NA,
-  limit = NA, start = NA, end = NA, ...)
+  limit = NA, id_only = NA, start = NA, end = NA, ...)
 }
 \arguments{
 \item{key}{API access key (required)}
@@ -17,6 +17,8 @@ api_matches(key = NA, league = NA, competition = NA, platform = NA,
 \item{platform}{pc, ps4, or xb1 (optional)}
 
 \item{limit}{Number of entries to return (defaults to 100)}
+
+\item{id_only}{Return match summaries or just the match id (0|1, defaults to match summary)}
 
 \item{start}{Start date (defaults to 20 days ago)}
 

@@ -259,8 +259,7 @@ api_team <- function(key = NA, name = NA, id = NA, platform = NA, ...) {
 #'
 #' @examples
 api_call <- function(method, params, simplify = F, debug = F) {
-
-  params <- purrr::modify_if(params, is.na, as.null)
+  params[is.na(params)] <- NULL
 
   if(is.null(params$key)) stop("API access key is required")
 
