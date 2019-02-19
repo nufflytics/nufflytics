@@ -7,7 +7,7 @@
 update_probs(team)
 }
 \arguments{
-\item{team}{A team object from \code{\link{make_team}}}
+\item{team}{A team object from \code{make_team}}
 }
 \value{
 Returns the passed team object with win probabilities updated for additional games played

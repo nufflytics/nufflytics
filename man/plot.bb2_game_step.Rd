@@ -12,5 +12,5 @@
 \item{...}{}
 }
 \description{
-Presents a diagnotic plot of the current board state of a \code{bb2_game_step} object. Likely to have been created from a replay file with \link{read_replay_step}.
+Presents a diagnotic plot of the current board state of a \code{bb2_game_step} object. Likely to have been created from a replay file with read_replay_step.
 }

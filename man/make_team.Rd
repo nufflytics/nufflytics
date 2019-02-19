@@ -10,7 +10,7 @@ make_team(team_data)
 \item{team_data}{}
 }
 \value{
-List of team information ready for input to game simulation with \code{\link{process_game}}
+List of team information ready for input to game simulation with \code{process_game}
 }
 \description{
 Team data used to construct a team for simulations. Can be a data frame row, named vector or list. Will be converted to list prior to processing. Must have data for \code{TV_displayed}, \code{TV_extra}, \code{wins}, \code{draws}, and \code{losses}. Other data allowed and will be passed through to the returned team object.

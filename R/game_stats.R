@@ -21,7 +21,7 @@ get_game_stats <- function(uuid, platform) {
 #' Calculate the total match statistics for a team by adding the individual player statistics. Slightly slower than using the pre-summarised stats in .$RowMatch, but these are inaccurate - eg. crowdsurfs aren't recorded at all.
 #' Available statistics are \code{"inflictedCasualties", "inflictedCatches", "inflictedDead", "inflictedInjuries", "inflictedInterceptions", "inflictedKO", "inflictedMetersPassing", "inflictedMetersRunning", "inflictedPasses", "inflictedPushOuts", "inflictedStuns", "inflictedTackles", "inflictedTouchdowns", "sustainedCasualties", "sustainedDead", "sustainedInjuries", "sustainedInterceptions", "sustainedKO", "sustainedStuns", "sustainedTackles"}
 #'
-#' @param match_data Match data object from \link{\code{get_game_stats}}
+#' @param match_data Match data object from \code{get_game_stats}
 #' @param stat Name of the statistic to collect
 #' @param team One of \code{"home"} or \code{"away"} to identify the team
 #'
@@ -87,7 +87,7 @@ parse_perms <- function(cas_list) {
 
 #' Get team score
 #'
-#' @param match_data Match data object from \link{\code{get_game_stats}}
+#' @param match_data Match data object from \code{get_game_stats}
 #' @param team One of \code{"home"} or \code{"away"} to identify the team
 #'
 #' @return Number of touchdowns scored by the specified team

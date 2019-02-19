@@ -253,7 +253,7 @@ api_team <- function(key = NA, name = NA, id = NA, platform = NA, ...) {
 #'
 #' @param method The name of the method to call
 #' @param params The query parameters to call the method with
-#' @param simplify Should the resulting data be simplified? \code{\link[jsonlite](fromJSON)} parameter \code{simplifyDataFrame}.
+#' @param simplify Should the resulting data be simplified? \code{fromJSON} parameter \code{simplifyDataFrame}.
 #'
 #' @return The data from the specified API call as a list
 #'

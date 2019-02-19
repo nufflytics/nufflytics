@@ -16,7 +16,7 @@ simulate_league(teams, schedule, weights = list(c(60, 20, 20)),
 
 \item{schedule}{Data frame containing the league schedule. Must contain \code{round}, \code{home_team}, and\code{away_team}}
 
-\item{weights}{List containing a vector per round of three weights for combining probabilities from CCL data and a team's own record. Provided to the \code{\link{calc_game_probs}} function. If a list with a single vector is provided, it expands it up to the length of the season, \code{i.e.} it is a shortcut for providing constant weights for all rounds.}
+\item{weights}{List containing a vector per round of three weights for combining probabilities from CCL data and a team's own record. Provided to the \code{calc_game_probs} function. If a list with a single vector is provided, it expands it up to the length of the season, \code{i.e.} it is a shortcut for providing constant weights for all rounds.}
 
 \item{simulation_run}{Number of this simulation run. Used to print logging info to console so monitor simulation progress when performed in bulk}
 

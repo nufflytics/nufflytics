@@ -13,7 +13,7 @@ process_round(rnd, teams, schedule, weights)
 
 \item{schedule}{Full schedule for division. Data frame with headers \code{round}, \code{home_team},\code{away_team}}
 
-\item{weights}{Relative weights for probabilities provided to the \code{\link{calc_game_probs}} function}
+\item{weights}{Relative weights for probabilities provided to the \code{calc_game_probs} function}
 }
 \value{
 Returns the team list with all games for the round simulated

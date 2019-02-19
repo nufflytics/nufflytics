@@ -4,7 +4,7 @@
 #'
 #' @param team_data
 #'
-#' @return List of team information ready for input to game simulation with \code{\link{process_game}}
+#' @return List of team information ready for input to game simulation with \code{process_game}
 #' @export
 make_team <- function(team_data) {
   team <- as.list(team_data)
@@ -31,7 +31,7 @@ make_team <- function(team_data) {
 #'
 #' Takes a team object and updates it's internal win probabilities to accurately match the W/D/L record. Should be run once the results of a game simulation have been included in the team's record if required.
 #'
-#' @param team A team object from \code{\link{make_team}}
+#' @param team A team object from \code{make_team}
 #'
 #' @return Returns the passed team object with win probabilities updated for additional games played
 #' @export
@@ -49,7 +49,7 @@ update_probs <- function(team) {
 #'
 #' Takes a team object and changes it's TV to something new. Takes the TV change from CCL data for the relevant race within +- 20 TV of the team's pre-game TV. To avoid single occurance outliers having a large impact on the results, sample five options and take the median
 #'
-#' @param team A team object from \code{\link{make_team}}
+#' @param team A team object from \code{make_team}
 #'
 #' @return Returns the passed team object with an updated TV
 #' @export
@@ -167,7 +167,7 @@ process_game <- function(team_list, weights) {
 #' @param rnd Round number to simulate
 #' @param teams List of all teams in the division
 #' @param schedule Full schedule for division. Data frame with headers \code{round}, \code{home_team},\code{away_team}
-#' @param weights Relative weights for probabilities provided to the \code{\link{calc_game_probs}} function
+#' @param weights Relative weights for probabilities provided to the \code{calc_game_probs} function
 #'
 #' @return Returns the team list with all games for the round simulated
 #' @export
@@ -194,7 +194,7 @@ process_round <- function(rnd, teams, schedule, weights) {
 #'
 #' @param teams Data frame of with team_name, race, TV_displayed, TV_extra, wins, losses, draws.
 #' @param schedule Data frame containing the league schedule. Must contain \code{round}, \code{home_team}, and\code{away_team}
-#' @param weights List containing a vector per round of three weights for combining probabilities from CCL data and a team's own record. Provided to the \code{\link{calc_game_probs}} function. If a list with a single vector is provided, it expands it up to the length of the season, \code{i.e.} it is a shortcut for providing constant weights for all rounds.
+#' @param weights List containing a vector per round of three weights for combining probabilities from CCL data and a team's own record. Provided to the \code{calc_game_probs} function. If a list with a single vector is provided, it expands it up to the length of the season, \code{i.e.} it is a shortcut for providing constant weights for all rounds.
 #' @param simulation_run Number of this simulation run. Used to print logging info to console so monitor simulation progress when performed in bulk
 #' @param num_sims Total number of simulations to run. Defaults to 10 for a quick run to check that everything is working. Recommend changing it to 1000 or more for real predictions
 #'

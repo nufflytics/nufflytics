@@ -2,7 +2,7 @@
 #'
 #' Extracts a single replay step from a replay file
 #'
-#' @param replay A \code{bb2_replay} object created with \link{read_replay}
+#' @param replay A \code{bb2_replay} object created with read_replay
 #' @param stepID Integer specifying the index of the replay step to extract
 #'
 #' @return A \code{bb2_game_step} object

@@ -11,7 +11,7 @@ api_call(method, params, simplify = F, debug = F)
 
 \item{params}{The query parameters to call the method with}
 
-\item{simplify}{Should the resulting data be simplified? \code{\link[jsonlite](fromJSON)} parameter \code{simplifyDataFrame}.}
+\item{simplify}{Should the resulting data be simplified? \code{fromJSON} parameter \code{simplifyDataFrame}.}
 }
 \value{
 The data from the specified API call as a list
