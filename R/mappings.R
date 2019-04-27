@@ -32,10 +32,16 @@ id_to_race <- function(id) {
          "22" = "Underworld Denizens",
          "24" = "Brettonian",
          "25" = "Kislev Circus",
+         "32" = "Superior Being Ring",
          "33" = "Chaotic Player Pact",
+         "34" = "Chaos Gods Selection",
          "35" = "Far East Association",
+         "36" = "Elfic Grand Coalition",
          "37" = "Anti-Fur Society",
          "38" = "Alliance of Goodness",
+         "39" = "Human League",
+         "40" = "Violence Together",
+         "41" = "Union of Small People",
          "42" = "Afterlife United",
          "Unknown race"
   )
