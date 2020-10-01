@@ -264,7 +264,7 @@ api_call <- function(method, params, simplify = F, debug = F) {
   if(is.null(params$key)) stop("API access key is required")
 
   ret = httr::GET(
-    "http://web.cyanide-studio.com",
+    "http://web1.cyanide-studio.com",
     path=c("ws","bb2",method,""),
     query = params
   )
