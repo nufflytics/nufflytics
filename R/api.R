@@ -258,13 +258,13 @@ api_team <- function(key = NA, name = NA, id = NA, platform = NA, ...) {
 #' @return The data from the specified API call as a list
 #'
 #' @examples
-api_call <- function(method, params, simplify = F, debug = F) {
+api_call <- function(method, params, simplify = F, debug = F, webs = "web") {
   params[is.na(params)] <- NULL
 
   if(is.null(params$key)) stop("API access key is required")
 
   ret = httr::GET(
-    "http://web1.cyanide-studio.com",
+    glue::glue("http://{webs}.cyanide-studio.com"),
     path=c("ws","bb2",method,""),
     query = params
   )
